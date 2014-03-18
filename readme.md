@@ -1,5 +1,3 @@
-For more information about packaged apps, see http://developer.chrome.com/apps/about_apps.html.
+This project is for porting Beagleterm to Dart version.
 
-`app/manifest.json` describes the Chrome packaged application.
-
-`app/background.js` is the entry point to the Chrome App; it launches `app/nikes.html`.
+Sungguk Lim(limasdf@gmail.com) all rights reserved.

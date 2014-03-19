@@ -1,7 +1,21 @@
 import 'package:chrome/chrome_app.dart' as chrome;
 
+onReadHandler([chrome.SerialReceiveInfo info]) {
+ var nike = info;
+}
+
 void main() {
   List<chrome.DeviceInfo> serialList;
+
+  chrome.storage.onChanged.listen((_) {
+  });
+
+  chrome.serial.onReceive.listen((_) {
+  });
+  /*
+  chrome.serial.onReceiveError.listen((_){
+  });
+*/
   chrome.serial.getDevices().then((infoList) {
     serialList = infoList;
     infoList.forEach((info) {
@@ -14,10 +28,5 @@ void main() {
   }).then((connectionInfo) {
     print('success to connect');
     var ret = connectionInfo;
-    chrome.serial.onReceive.listen(onReadHandler);
   });
-}
-
-void onReadHandler(info) {
- var nike = info;
 }

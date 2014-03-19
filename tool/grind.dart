@@ -29,6 +29,24 @@ void _compile([GrinderContext context]) {
   // TODO(sunglim) : Remove deps, map and js output.
 }
 
+void setup(GrinderContext context) {
+  // check to make sure we can locate the SDK
+  if (sdkDir == null) {
+    context.fail("Unable to locate the Dart SDK\n"
+        "Please set the DART_SDK environment variable to the SDK path.\n"
+        "  e.g.: 'export DART_SDK=your/path/to/dart/dart-sdk'");
+  }
+
+  PubTools pub = new PubTools();
+  pub.get(context);
+
+  // copy from ./packages to ./app/packages
+  copyDirectory(getDir('packages'), getDir('app/packages'), context);
+
+  BUILD_DIR.createSync();
+  DIST_DIR.createSync();
+}
+
 void deploy([GrinderContext context]) {
   if (context != null) {
     context.log("Copy App directory to BUILD directory");

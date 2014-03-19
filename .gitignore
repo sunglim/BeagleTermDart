@@ -1,7 +1,8 @@
 *~
 .buildlog
 .settings/
+/.settings
 /build
-/packages
 /tool/packages
+packages
 pubspec.lock

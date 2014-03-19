@@ -8,6 +8,7 @@ final Directory BUILD_DIR = new Directory('build');
 final Directory APP_DIR = new Directory('app');
 
 void main([List<String> args]) {
+  defineTask('setup', taskFunction: setup);
   defineTask('deploy', taskFunction: deploy);
 
   startGrinder(args);
@@ -40,11 +41,10 @@ void setup(GrinderContext context) {
   PubTools pub = new PubTools();
   pub.get(context);
 
+  copyFile(joinFile(Directory.current, ['tool', 'serial.dart']),
+      joinDir(getDir('packages'), ['chrome', 'gen']), context);
   // copy from ./packages to ./app/packages
   copyDirectory(getDir('packages'), getDir('app/packages'), context);
-
-  BUILD_DIR.createSync();
-  DIST_DIR.createSync();
 }
 
 void deploy([GrinderContext context]) {

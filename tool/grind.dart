@@ -62,3 +62,4 @@ void deploy([GrinderContext context]) {
 String _dart2jsName() {
   return (Platform.isWindows) ? 'dart2js.bat' : 'dart2js';
 }
+

@@ -28,7 +28,9 @@ class Hterm {
     terminalObject.callMethod('setCursorVisible', [true]);
 
     // pass the Command instance.
-    SetupBeagleClass();
+    BeagleObject = new Beagle();
+    js.context['Beagle'] = BeagleObject.Create;
+    js.context['Beagle']['prototype']['run'] = BeagleObject.run;
 
     // Beagle.Create will be passed.
     terminalObject.callMethod('runCommandClass', [js.context['Beagle']]);
@@ -68,11 +70,4 @@ class Beagle {
     this.portInfo_ = null;
     //Println('nikeadidas');
   }
-}
-
-void SetupBeagleClass() {
-  BeagleObject = new Beagle();
-  print('nike');
-  js.context['Beagle'] = BeagleObject.Create;
-  js.context['Beagle']['prototype']['run'] = BeagleObject.run;
 }

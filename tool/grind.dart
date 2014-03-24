@@ -9,7 +9,7 @@ final Directory APP_DIR = new Directory('app');
 
 void main([List<String> args]) {
   defineTask('setup', taskFunction: setup);
-  defineTask('deploy', taskFunction: deploy);
+  defineTask('deploy', taskFunction: deploy, depends: ['setup']);
 
   startGrinder(args);
 }

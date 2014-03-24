@@ -3,5 +3,6 @@ description: A sample Chrome packaged application
 dependencies:
   browser: any
   chrome: any
+  js: any
 dev_dependencies:
   grinder: '>=0.5.0 <0.6.0'

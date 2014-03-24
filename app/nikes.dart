@@ -1,32 +1,29 @@
 import 'package:chrome/chrome_app.dart' as chrome;
 
-onReadHandler([chrome.SerialReceiveInfo info]) {
- var nike = info;
-}
+import 'lib/terminal.dart' as terminal;
+
+//Beagle BeagleObject = null;
 
 void main() {
   List<chrome.DeviceInfo> serialList;
 
-  chrome.storage.onChanged.listen((_) {
-  });
+  terminal.Hterm.init();
 
   chrome.serial.onReceive.listen((_) {
   });
-  /*
-  chrome.serial.onReceiveError.listen((_){
-  });
-*/
+
   chrome.serial.getDevices().then((infoList) {
     serialList = infoList;
     infoList.forEach((info) {
       print(info.path);
     });
   }).then((_) {
-    print('connect 115200' + serialList.first.path);
+    terminal.BeagleObject.Println('connect 115200' + serialList.first.path);
     var option = new chrome.ConnectionOptions(name: 'nike', bitrate: 115200);
     return chrome.serial.connect(serialList.first.path, option);
   }).then((connectionInfo) {
-    print('success to connect');
+    terminal.BeagleObject.Println('success to connect');
     var ret = connectionInfo;
   });
+
 }

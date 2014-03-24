@@ -59,8 +59,16 @@ class Beagle {
     ioFunction.callMethod('print', [message]);
   }
 
+  keystroke(str) {
+    print("keystroke:" + str);
+    Print(str);
+  }
+
   Create(argv) {
     ioFunction = argv['io'];
+    ioFunction['onVTKeystroke'] = this.keystroke;
+    ioFunction['sendString'] = this.keystroke;
+
     io = null;
     argv_ = null;
     portInfo_ = null;

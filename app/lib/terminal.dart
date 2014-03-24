@@ -72,6 +72,7 @@ class Beagle {
 
 void SetupBeagleClass() {
   BeagleObject = new Beagle();
+  print('nike');
   js.context['Beagle'] = BeagleObject.Create;
   js.context['Beagle']['prototype']['run'] = BeagleObject.run;
 }

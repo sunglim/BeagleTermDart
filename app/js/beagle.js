@@ -2,10 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-/*
 lib.rtdep('lib.f',
           'hterm');
-*/
 
 // CSP means that we can't kick off the initialization from the html file,
 // so we do it like this instead.
@@ -42,7 +40,6 @@ Beagle.prototype.commandName = 'beagle';
  * This constructs a new Terminal instance.
  */
 Beagle.init = function() {
-  ConnectDialog.show(function(portInfo) {
     var profileName = lib.f.parseQuery(document.location.search)['profile'];
     var terminal = new hterm.Terminal(profileName);
     terminal.decorate(document.querySelector('#terminal'));
@@ -55,10 +52,8 @@ Beagle.init = function() {
     setTimeout(function() {
       terminal.setCursorPosition(0, 0);
       terminal.setCursorVisible(true);
-      terminal.runCommandClass(Beagle, JSON.stringify(portInfo))
+      terminal.runCommandClass(Beagle, {'nike'})
     }, 500);
-  });
-
   return true;
 };
 

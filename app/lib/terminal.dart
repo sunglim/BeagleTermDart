@@ -1,6 +1,5 @@
 library beagle.terminal;
 
-import 'package:js/js.dart' as jsdart;
 import 'dart:js' as js;
 import 'dart:html';
 
@@ -8,9 +7,8 @@ Beagle BeagleObject = null;
 
 class Hterm {
   static void init() {
-    var htermJs = jsdart.context['hterm'];
-    var initJs = htermJs['init'];
-    initJs(_htermInitCallback);
+    var htermJs = js.context['hterm'];
+    htermJs.callMethod('init', [_htermInitCallback]);
   }
 
   static void _htermInitCallback() {

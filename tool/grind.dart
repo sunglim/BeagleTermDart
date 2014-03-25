@@ -9,7 +9,7 @@ final Directory APP_DIR = new Directory('app');
 
 void main([List<String> args]) {
   defineTask('setup', taskFunction: setup);
-  defineTask('deploy', taskFunction: deploy);
+  defineTask('deploy', taskFunction: deploy, depends: ['setup']);
 
   startGrinder(args);
 }
@@ -41,8 +41,6 @@ void setup(GrinderContext context) {
   PubTools pub = new PubTools();
   pub.get(context);
 
-  copyFile(joinFile(Directory.current, ['tool', 'serial.dart']),
-      joinDir(getDir('packages'), ['chrome', 'gen']), context);
   // copy from ./packages to ./app/packages
   copyDirectory(getDir('packages'), getDir('app/packages'), context);
 }
@@ -64,3 +62,4 @@ void deploy([GrinderContext context]) {
 String _dart2jsName() {
   return (Platform.isWindows) ? 'dart2js.bat' : 'dart2js';
 }
+

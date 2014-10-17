@@ -18,8 +18,7 @@ void main() {
       var option = new chrome.ConnectionOptions(name: 'nike', bitrate: 115200);
       return chrome.serial.connect(serialList.first.path, option);
     }).then((connectionInfo) {
-      terminal.BeagleObject.Println('success to connect');
-      var ret = connectionInfo;
+      terminal.BeagleObject.Println('success to connected to : ' + connectionInfo.name);
     });
   });
 }

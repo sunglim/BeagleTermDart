@@ -6,22 +6,16 @@ import 'dart:html';
 Beagle BeagleObject = null;
 
 class Hterm {
-  static void init() {
-    var htermJs = js.context['hterm'];
-    htermJs.callMethod('init', [_htermInitCallback]);
-  }
-
-  static void _htermInitCallback() {
+  static void init() { 
+    //hterm.defaultStorage = new lib.Storage.Chrome(chrome.storage.sync);
+    // TODO: Implement with dart. manually patch from hterm.PreferenceManager.
+ 
     // 1. Create an instance of hterm.Terminal:
     // var t = new hterm.Terminal(opt_profileName);
-    var terminalObject = new js.JsObject(js.context['hterm']['Terminal'], ['opt_profileName']);
+    var terminalObject = new js.JsObject(js.context['hterm']['Terminal'], ["NIKE"]);
 
     // Now we can listen #terminal div size changed event.
     terminalObject.callMethod('decorate', [querySelector("#terminal")]);
-
-    //Timer.run(terminalInitialize);
-    terminalObject.callMethod('setCursorPosition', [0, 0]);
-    terminalObject.callMethod('setCursorVisible', [true]);
 
     // pass the Command instance.
     BeagleObject = new Beagle();

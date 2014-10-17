@@ -14,6 +14,9 @@ void main() {
         print(info.path);
       });
     }).then((_) {
+      serialList.forEach((item) {
+        terminal.BeagleObject.Println('Has ports ' + item.path);  
+      });
       terminal.BeagleObject.Println('connect 115200' + serialList.first.path);
       var option = new chrome.ConnectionOptions(name: 'nike', bitrate: 115200);
       return chrome.serial.connect(serialList.first.path, option);

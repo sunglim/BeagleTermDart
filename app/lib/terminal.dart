@@ -12,11 +12,9 @@ class Hterm {
   }
 
   static void _htermInitCallback() {
-       // Useful for console debugging.
-       //window.term_ = terminal;
-    var htermJs = js.context['hterm']['Terminal'];
-
-    js.JsObject terminalObject = new js.JsObject(htermJs, ['nike']);
+    // 1. Create an instance of hterm.Terminal:
+    // var t = new hterm.Terminal(opt_profileName);
+    var terminalObject = new js.JsObject(js.context['hterm']['Terminal'], ['opt_profileName']);
 
     // Now we can listen #terminal div size changed event.
     terminalObject.callMethod('decorate', [querySelector("#terminal")]);

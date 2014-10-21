@@ -8,6 +8,8 @@
     <link rel='stylesheet' href='css/beagle.css'>
     <link rel='stylesheet' href='css/common.css'>
     <script src="js/hterm_all.js"></script>
+    <link rel="import" href="packages/core_elements/core_toolbar.html">
+    <link rel="import" href="packages/core_elements/core_icon_button.html">
     <link rel="import" href="packages/paper_elements/paper_button.html">
     <link rel="import" href="packages/paper_elements/paper_dialog.html">
     <link rel="import" href="packages/paper_elements/paper_dialog_transition.html">
@@ -42,6 +44,10 @@
   </head>
 
   <body>
+    <core-toolbar>
+      <core-icon-button icon="menu"></core-icon-button>
+      <span flex>Toolbar</span>
+    </core-toolbar>
     <div id='terminal'></div>
     <div id='update-notification' style='display:none'>&#x21E7;</div>
 

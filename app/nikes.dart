@@ -27,5 +27,4 @@ void main() {
       terminal.BeagleObject.Println('success to connected to : ' + connectionInfo.name);
     });
   });
-
 }

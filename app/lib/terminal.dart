@@ -42,8 +42,8 @@ class Hterm {
   }
 }
 
-// Interface calss to use Hterm functions.
-// To use Hterm APIs, use this class's adapter functions.
+// Interface class to use Hterm functions.
+// To use Hterm APIs, use this class's functions.
 class Beagle {
   Map argv_;
   int io;
@@ -55,26 +55,21 @@ class Beagle {
   }
 
   void Println(String message) {
-    if (ioFunction == null)
-      return;
     ioFunction.callMethod('println', [message]);
   }
 
   void Print(String message) {
-    if (ioFunction == null)
-      return;
     ioFunction.callMethod('print', [message]);
   }
 
-  keystroke(str) {
-    print("keystroke:" + str);
-    Print(str);
+  sendString_(str) {
+    print("sendString_: " + str);
   }
 
   Create(argv) {
     ioFunction = argv['io'];
-    ioFunction['onVTKeystroke'] = this.keystroke;
-    ioFunction['sendString'] = this.keystroke;
+    ioFunction['onVTKeystroke'] = this.sendString_;
+    ioFunction['sendString'] = this.sendString_;
 
     io = null;
     argv_ = null;

@@ -1,5 +1,7 @@
 import 'package:chrome/chrome_app.dart' as chrome;
-
+import 'package:paper_elements/paper_button.dart';
+import 'package:paper_elements/paper_dialog.dart';
+import 'package:paper_elements/paper_dialog_transition.dart';
 import 'lib/terminal.dart' as terminal;
 import 'dart:async';
 

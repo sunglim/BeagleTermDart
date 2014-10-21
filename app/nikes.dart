@@ -7,6 +7,7 @@ void main() {
   List<chrome.DeviceInfo> serialList;
 
   terminal.Hterm.init();
+
   (new Future.delayed(const Duration(milliseconds: 500), () => "500")).then((_) {
     chrome.serial.getDevices().then((infoList) {
       serialList = infoList;
@@ -24,4 +25,5 @@ void main() {
       terminal.BeagleObject.Println('success to connected to : ' + connectionInfo.name);
     });
   });
+
 }

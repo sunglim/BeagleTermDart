@@ -5,28 +5,45 @@ import 'dart:html';
 
 Beagle BeagleObject = null;
 
+// Settings to use Hterm.
 class Hterm {
+  static var instance;
   static void init() { 
     //hterm.defaultStorage = new lib.Storage.Chrome(chrome.storage.sync);
     // TODO: Implement with dart. manually patch from hterm.PreferenceManager.
  
     // 1. Create an instance of hterm.Terminal:
     // var t = new hterm.Terminal(opt_profileName);
-    var terminalObject = new js.JsObject(js.context['hterm']['Terminal'], ["NIKE"]);
+    Hterm.instance = new js.JsObject(js.context['hterm']['Terminal'], ["NIKE"]);
 
-    // Now we can listen #terminal div size changed event.
-    terminalObject.callMethod('decorate', [querySelector("#terminal")]);
+    // 2. Decorate. this makes black div.
+    // t.decorate(document.querySelector('#terminal'));
+    Hterm.instance.callMethod('decorate', [querySelector("#terminal")]);
 
-    // pass the Command instance.
+    // 3. Register a callback which is called when terminal is ready.
+    // t.onTerminalReady = function() {
+    Hterm.instance['onTerminalReady'] = Hterm.onTerminalReady;
+  }
+  
+  // Called when terminal is ready.
+  static onTerminalReady() {
+    print('Terminal is ready');
+    
+    // t.runCommandClass(Crosh, document.location.hash.substr(1));
+    // return true;
+
+    // Pass the Command instance.
     BeagleObject = new Beagle();
     js.context['Beagle'] = BeagleObject.Create;
     js.context['Beagle']['prototype']['run'] = BeagleObject.run;
 
     // Beagle.Create will be passed.
-    terminalObject.callMethod('runCommandClass', [js.context['Beagle']]);
+    Hterm.instance.callMethod('runCommandClass', [js.context['Beagle']]);
   }
 }
 
+// Interface calss to use Hterm functions.
+// To use Hterm APIs, use this class's adapter functions.
 class Beagle {
   Map argv_;
   int io;
@@ -66,6 +83,6 @@ class Beagle {
 
   void run() {
     this.portInfo_ = null;
-    //Println('nikeadidas');
+    print('Beagle::run');
   }
 }

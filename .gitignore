@@ -1,5 +1,6 @@
 *~
 .buildlog
+.pub/
 .settings/
 /.settings
 /build

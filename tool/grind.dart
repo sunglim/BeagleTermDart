@@ -8,8 +8,8 @@ final Directory BUILD_DIR = new Directory('build');
 final Directory APP_DIR = new Directory('app');
 
 void main([List<String> args]) {
-  defineTask('setup', taskFunction: setup);
-  defineTask('deploy', taskFunction: deploy, depends: ['setup']);
+  task('setup', setup);
+  task('deploy', deploy, ['setup']);
 
   startGrinder(args);
 }
@@ -31,8 +31,7 @@ void _compile([GrinderContext context]) {
 }
 
 void setup(GrinderContext context) {
-  PubTools pub = new PubTools();
-  pub.get(context);
+  Pub.get(context);
 
   // copy from ./packages to ./app/packages
   copyDirectory(getDir('packages'), getDir('app/packages'), context);

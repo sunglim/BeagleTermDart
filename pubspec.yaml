@@ -2,8 +2,6 @@ name: nikes
 description: A sample Chrome packaged application
 dependencies:
   browser: any
-  chrome: '>=0.5.4'
-  paper_elements: ">=0.5.0 <0.6.0"
-  core_elements: ">=0.4.0+2 <0.5.0"
+  
 dev_dependencies:
-  grinder: '>=0.5.0 <0.6.0'
+  grinder: '>= 0.6.0 < 0.7.0'

@@ -1,10 +1,6 @@
-import 'dart:async';
 import 'dart:html';
 
 import 'package:chrome/chrome_app.dart' as chrome;
-import 'package:paper_elements/paper_button.dart';
-import 'package:paper_elements/paper_dialog.dart';
-import 'package:paper_elements/paper_dialog_transition.dart';
 import 'lib/terminal.dart' as terminal;
 
 void main() {
@@ -14,29 +10,10 @@ void main() {
 
   ConnectionDialog dialog = ConnectionDialog.Instance();
   dialog.LoadBitrate();
-
-  /*
-  (new Future.delayed(const Duration(milliseconds: 500), () => "500")).then((_) {
-    chrome.serial.getDevices().then((infoList) {
-      serialList = infoList;
-      infoList.forEach((info) {
-        print(info.path);
-      });
-    }).then((_) {
-      serialList.forEach((item) {
-        terminal.BeagleObject.Println('Has ports ' + item.path);
-      });
-      terminal.BeagleObject.Println('connect 115200' + serialList.first.path);
-      var option = new chrome.ConnectionOptions(name: 'nike', bitrate: 115200);
-      return chrome.serial.connect(serialList.first.path, option);
-    }).then((connectionInfo) {
-      terminal.BeagleObject.Println('success to connected to : ' + connectionInfo.name);
-    });
-  });
-  */
 }
 
 class ConnectionDialog {
+  SelectElement elem = querySelector('#port-picker');
   static ConnectionDialog _instance;
 
   static ConnectionDialog Instance() {
@@ -51,11 +28,17 @@ class ConnectionDialog {
 
   _init() {
     chrome.serial.getDevices().then((infoList) {
-      Element elem = querySelector('#port-picker');
       infoList.forEach((info) {
-        print('Has ports ' + info.path);
         elem.appendHtml('<option value="' + info.path + '">' + info.path + '</option>');
       });
+    });
+
+    querySelector("#btnAccept").onClick.listen((_) {
+      var option = new chrome.ConnectionOptions(name: 'BeagleConnectionId', bitrate: 115200);
+      var portName = elem.value;
+      terminal.BeagleObject.Println("Trying connect to " + portName + "...");
+      chrome.serial.connect(portName, option);
+      // TODO(sungguk): handle connection result.
     });
   }
   LoadBitrate() {

@@ -3,6 +3,8 @@ library beagle.terminal;
 import 'dart:js' as js;
 import 'dart:html';
 
+import 'package:chrome/chrome_app.dart' as chrome;
+
 Beagle BeagleObject = null;
 
 // Settings to use Hterm.
@@ -51,9 +53,14 @@ class Beagle {
   int io;
   Map portInfo_;
   js.JsFunction ioFunction;
+  var serialConnectionId_ = -1;
 
   Beagle() {
    // Hterm.init();
+  }
+
+  void setSerialConnection(connectionId) {
+    serialConnectionId_ = connectionId;
   }
 
   void Println(String message) {
@@ -64,8 +71,15 @@ class Beagle {
     ioFunction.callMethod('print', [message]);
   }
 
+  ReceiveString(string) {
+    this.Print(string);
+  }
+
   sendString_(str) {
     print("sendString_: " + str);
+    if (serialConnectionId_ == -1)
+      return;
+    chrome.serial.send(serialConenctionId_, util.StringToArraybuffer(str));
   }
 
   Create(argv) {

@@ -44,7 +44,7 @@ class ConnectionDialog {
       chrome.serial.connect(portName, option).then((connectionInfo) {
         Stream<chrome.SerialReceiveInfo> stream = chrome.serial.onReceive;
         stream.listen((value) {
-          print(utils.ArrayToString(value.data));
+          terminal.BeagleObject.ReceiveString(utils.ArraybufferToString(value.data));
         });
       });
     });

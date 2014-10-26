@@ -8,10 +8,10 @@ Beagle BeagleObject = null;
 // Settings to use Hterm.
 class Hterm {
   static var instance;
-  static void init() { 
+  static void init() {
     //hterm.defaultStorage = new lib.Storage.Chrome(chrome.storage.sync);
     // TODO: Implement with dart. manually patch from hterm.PreferenceManager.
- 
+
     // 1. Create an instance of hterm.Terminal:
     // var t = new hterm.Terminal(opt_profileName);
     Hterm.instance = new js.JsObject(js.context['hterm']['Terminal'], ["NIKE"]);
@@ -24,11 +24,11 @@ class Hterm {
     // t.onTerminalReady = function() {
     Hterm.instance['onTerminalReady'] = Hterm.onTerminalReady;
   }
-  
+
   // Called when terminal is ready.
   static onTerminalReady() {
     print('Terminal is ready');
-    
+
     // t.runCommandClass(Crosh, document.location.hash.substr(1));
     // return true;
 
@@ -39,6 +39,8 @@ class Hterm {
 
     // Beagle.Create will be passed.
     Hterm.instance.callMethod('runCommandClass', [js.context['Beagle']]);
+
+    BeagleObject.Println("BeagleTerm, still beta.");
   }
 }
 

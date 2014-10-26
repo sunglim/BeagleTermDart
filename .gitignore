@@ -1,4 +1,5 @@
 *~
+*.swp
 .buildlog
 .pub/
 .settings/

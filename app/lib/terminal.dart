@@ -63,6 +63,7 @@ class Beagle {
 
   void setSerialConnection(connectionId) {
     serialConnectionId_ = connectionId;
+    new js.JsObject(js.context['AddConnectedSerialId'], [connectionId]);
   }
 
   void Println(String message) {

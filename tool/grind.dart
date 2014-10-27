@@ -17,7 +17,7 @@ void main([List<String> args]) {
 void _compile([GrinderContext context]) {
   // Generate dart.js (doens't support eval), but actually use precompiled
   // version(support eval) from chrome-dart bootstrap.
-  List<String> arg = ['nikes.dart', '--out=nikes.dart.js'];
+  List<String> arg = ['index.dart', '--out=index.dart.js'];
   context.log('Run: ' + _dart2jsName() + ' ' + arg.join(' '));
   ProcessResult result =
       Process.runSync(_dart2jsName(), arg, workingDirectory: BUILD_DIR.path);

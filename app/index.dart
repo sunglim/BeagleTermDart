@@ -42,6 +42,7 @@ class ConnectionDialog {
       var portName = elem.value;
       terminal.BeagleObject.Println("Trying connect to " + portName + "...");
       chrome.serial.connect(portName, option).then((connectionInfo) {
+        terminal.BeagleObject.setSerialConnection(connectionInfo.connectionId);
         Stream<chrome.SerialReceiveInfo> stream = chrome.serial.onReceive;
         stream.listen((value) {
           terminal.BeagleObject.ReceiveString(utils.ArraybufferToString(value.data));

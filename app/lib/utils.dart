@@ -11,5 +11,5 @@ String ArraybufferToString(chrome.ArrayBuffer buffer) {
 }
 
 chrome.ArrayBuffer StringToArraybuffer(String str) {
-  return null;
+  return chrome.ArrayBuffer.fromBytes(UTF8.encode(str));
 }

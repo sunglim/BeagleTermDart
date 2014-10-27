@@ -3,6 +3,8 @@ library beagle.terminal;
 import 'dart:js' as js;
 import 'dart:html';
 
+import './utils.dart' as utils;
+
 import 'package:chrome/chrome_app.dart' as chrome;
 
 Beagle BeagleObject = null;
@@ -79,7 +81,7 @@ class Beagle {
     print("sendString_: " + str);
     if (serialConnectionId_ == -1)
       return;
-    chrome.serial.send(serialConenctionId_, util.StringToArraybuffer(str));
+    chrome.serial.send(serialConnectionId_, utils.StringToArraybuffer(str));
   }
 
   Create(argv) {

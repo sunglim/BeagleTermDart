@@ -2,7 +2,7 @@ library beagle.utils;
 
 import 'dart:convert';
 
-import 'package:chrome/chrome_ext.dart' as chrome;
+import 'package:chrome/chrome_app.dart' as chrome;
 
 String ArraybufferToString(chrome.ArrayBuffer buffer) {
   // TODO(sunglim): Write Test. [48, 56, 49, 51]
@@ -11,5 +11,5 @@ String ArraybufferToString(chrome.ArrayBuffer buffer) {
 }
 
 chrome.ArrayBuffer StringToArraybuffer(String str) {
-  return chrome.ArrayBuffer.fromBytes(UTF8.encode(str));
+  return new chrome.ArrayBuffer.fromBytes(UTF8.encode(str));
 }

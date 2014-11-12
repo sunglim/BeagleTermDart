@@ -36,7 +36,7 @@ void setup(GrinderContext context) {
 
   // copy from ./packages to ./app/packages
   copyDirectory(getDir('packages'), getDir('app/packages'), context);
-  CspFix.Fix(getDir('app/packages/paper_elements'));
+  CspFix.Fix(getDir('app/packages'));
 }
 
 void deploy([GrinderContext context]) {

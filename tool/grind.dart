@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:CspFix/CspFix.dart' as CspFix;
 import 'package:grinder/grinder.dart';
 
 final Directory BUILD_DIR = new Directory('build');
@@ -35,6 +36,7 @@ void setup(GrinderContext context) {
 
   // copy from ./packages to ./app/packages
   copyDirectory(getDir('packages'), getDir('app/packages'), context);
+  CspFix.Fix(getDir('app/packages/paper_elements'));
 }
 
 void deploy([GrinderContext context]) {

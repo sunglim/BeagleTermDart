@@ -8,6 +8,6 @@ dependencies:
 dev_dependencies:
   grinder: '>=0.6.0 < 0.7.0'
   unittest: '>=0.11.0 <0.12.0'
-  CspFix:
-    git: https://github.com/sunglim/CspFixer.git
+  csp_fixer:
+    git: https://github.com/sunglim/csp_fixer.git
     version: '>=0.0.5'

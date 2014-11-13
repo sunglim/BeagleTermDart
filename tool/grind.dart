@@ -2,7 +2,7 @@
 
 import 'dart:io';
 
-import 'package:CspFix/CspFix.dart' as CspFix;
+import 'package:csp_fixer/csp_fixer.dart' as CspFix;
 import 'package:grinder/grinder.dart';
 
 final Directory BUILD_DIR = new Directory('build');

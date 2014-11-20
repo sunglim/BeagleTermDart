@@ -36,6 +36,8 @@ void setup(GrinderContext context) {
 
   // copy from ./packages to ./app/packages
   copyDirectory(getDir('packages'), getDir('app/packages'), context);
+
+  context.log('Run csp fix');
   CspFix.Fix(getDir('app/packages'));
 }
 

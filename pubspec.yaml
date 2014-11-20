@@ -10,4 +10,4 @@ dev_dependencies:
   unittest: '>=0.11.0 <0.12.0'
   csp_fixer:
     git: https://github.com/sunglim/csp_fixer.git
-    version: '>=0.0.5'
+    version: '>=0.1.1'
